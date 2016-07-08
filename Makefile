@@ -1,11 +1,13 @@
 CC=gcc
-LIBS=-lmikmod
+LIBS=-lmikmod -lpthread
+FLAGS=-shared -fPIC
 
-OBJ=xmplay.o
+LIB=xmplay.so
 
-%.o: %.c 
-	$(CC) -c -o $@ $< 
+all: $(LIB)
 
-xmplay: $(OBJ)
-	gcc -o xmplay $(OBJ) $(LIBS)
+%.o: %.c
+	$(CC) -c -o $@ $< $(LIBS) $(FLAGS)
 
+clean:
+	rm $(LIB)
