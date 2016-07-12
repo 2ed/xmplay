@@ -23,4 +23,5 @@ while true do
    if position == len - 1 or position == 0 then
       step = -step
    end
+   sleep(30)
 end

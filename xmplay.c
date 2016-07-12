@@ -150,6 +150,15 @@ static int deinit_mikmod(lua_State *L)
     return 0;
 }
 
+/* Lua lacks sleep function, which is a shame */
+
+static int lua_sleep(lua_State *L)
+{
+    int m = (int)lua_tonumber(L, 1);
+    usleep(m * 1000);
+    return 0;
+}
+
 /* Here we declare our library */
 
 static const struct luaL_Reg xmplay [] = {
@@ -168,5 +177,8 @@ int luaopen_xmplay(lua_State *L)
     printf("Reminder: - xmplay.init() to init,\n");
     printf("          - xmplay.play(path) to play,\n");
     printf("          - xmplay.quit() to clean up.\n");
+
+    /* Enable Lua with sleep ability! */
+    lua_register(L, "sleep", lua_sleep);
     return 1;
 }
