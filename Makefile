@@ -6,8 +6,8 @@ LIB=xmplay.so
 
 all: $(LIB)
 
-%.o: %.c
-	$(CC) -c -o $@ $< $(LIBS) $(FLAGS)
+%.so: %.c
+	$(CC) -o $@ $< $(LIBS) $(FLAGS)
 
 clean:
 	rm $(LIB)
